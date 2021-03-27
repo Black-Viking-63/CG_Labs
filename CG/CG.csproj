@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cls2D_Picture.cs" />
+    <Compile Include="cls3D_Point.cs" />
     <Compile Include="clsAlgorithmDrawLine.cs" />
+    <Compile Include="clsLoadData.cs" />
     <Compile Include="clsLW1Task1.cs" />
     <Compile Include="clsLW1Task3.cs" />
+    <Compile Include="clsLW1Task5.cs" />
     <Compile Include="clsRGB.cs" />
     <Compile Include="fLW1SelectTask.cs">
       <SubType>Form</SubType>
@@ -69,6 +72,12 @@
     <Compile Include="fLW1Task3.Designer.cs">
       <DependentUpon>fLW1Task3.cs</DependentUpon>
     </Compile>
+    <Compile Include="fLW1Task5_7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fLW1Task5_7.Designer.cs">
+      <DependentUpon>fLW1Task5_7.cs</DependentUpon>
+    </Compile>
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fLW1Task3.resx">
       <DependentUpon>fLW1Task3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fLW1Task5_7.resx">
+      <DependentUpon>fLW1Task5_7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>

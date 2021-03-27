@@ -102,6 +102,7 @@ namespace CG
             this.btnTask6.TabIndex = 2;
             this.btnTask6.Text = "Трехмерная рисовалка";
             this.btnTask6.UseVisualStyleBackColor = true;
+            this.btnTask6.Click += new System.EventHandler(this.btnTask6_Click);
             // 
             // btnClose
             // 

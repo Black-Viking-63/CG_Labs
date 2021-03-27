@@ -33,5 +33,11 @@ namespace CG
             fLW1Task3 fLW1Task3 = new fLW1Task3();
             fLW1Task3.ShowDialog();
         }
+
+        private void btnTask6_Click(object sender, EventArgs e)
+        {
+            fLW1Task5_7 fLW1Task5_7 = new fLW1Task5_7();
+            fLW1Task5_7.ShowDialog();
+        }
     }
 }
