@@ -31,10 +31,10 @@ namespace CG
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLoadData = new System.Windows.Forms.Button();
-            this.btnDrawTops = new System.Windows.Forms.Button();
-            this.btnDrawPolygons = new System.Windows.Forms.Button();
             this.btnDrawTriangle = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnDrawTops = new System.Windows.Forms.Button();
+            this.btnDrawPolygons = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,33 +79,6 @@ namespace CG
             this.btnLoadData.UseVisualStyleBackColor = true;
             this.btnLoadData.Click += new System.EventHandler(this.btnLoadData_Click);
             // 
-            // btnDrawTops
-            // 
-            this.btnDrawTops.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDrawTops.Font = new System.Drawing.Font("Century Schoolbook", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDrawTops.Location = new System.Drawing.Point(1371, 160);
-            this.btnDrawTops.Name = "btnDrawTops";
-            this.btnDrawTops.Size = new System.Drawing.Size(236, 151);
-            this.btnDrawTops.TabIndex = 1;
-            this.btnDrawTops.Text = "Рисуем вершины";
-            this.btnDrawTops.UseVisualStyleBackColor = true;
-            this.btnDrawTops.Click += new System.EventHandler(this.btnDrawTops_Click);
-            // 
-            // btnDrawPolygons
-            // 
-            this.btnDrawPolygons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDrawPolygons.Font = new System.Drawing.Font("Century Schoolbook", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDrawPolygons.Location = new System.Drawing.Point(1371, 317);
-            this.btnDrawPolygons.Name = "btnDrawPolygons";
-            this.btnDrawPolygons.Size = new System.Drawing.Size(236, 151);
-            this.btnDrawPolygons.TabIndex = 2;
-            this.btnDrawPolygons.Text = "Рисуем полигоны";
-            this.btnDrawPolygons.UseVisualStyleBackColor = true;
-            // 
             // btnDrawTriangle
             // 
             this.btnDrawTriangle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -132,6 +105,34 @@ namespace CG
             this.btnClose.Text = "Выход";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnDrawTops
+            // 
+            this.btnDrawTops.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDrawTops.Font = new System.Drawing.Font("Century Schoolbook", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDrawTops.Location = new System.Drawing.Point(1371, 160);
+            this.btnDrawTops.Name = "btnDrawTops";
+            this.btnDrawTops.Size = new System.Drawing.Size(236, 151);
+            this.btnDrawTops.TabIndex = 1;
+            this.btnDrawTops.Text = "Рисуем вершины";
+            this.btnDrawTops.UseVisualStyleBackColor = true;
+            this.btnDrawTops.Click += new System.EventHandler(this.btnDrawTops_Click);
+            // 
+            // btnDrawPolygons
+            // 
+            this.btnDrawPolygons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDrawPolygons.Font = new System.Drawing.Font("Century Schoolbook", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDrawPolygons.Location = new System.Drawing.Point(1371, 317);
+            this.btnDrawPolygons.Name = "btnDrawPolygons";
+            this.btnDrawPolygons.Size = new System.Drawing.Size(236, 151);
+            this.btnDrawPolygons.TabIndex = 2;
+            this.btnDrawPolygons.Text = "Рисуем полигоны";
+            this.btnDrawPolygons.UseVisualStyleBackColor = true;
+            this.btnDrawPolygons.Click += new System.EventHandler(this.btnDrawPolygons_Click);
             // 
             // pictureBox1
             // 

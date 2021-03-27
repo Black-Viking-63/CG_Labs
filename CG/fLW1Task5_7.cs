@@ -43,6 +43,7 @@ namespace CG
         private void btnLoadData_Click(object sender, EventArgs e)
         {
             clsLoadData.loadTopsFromObjectFile();
+            clsLoadData.loadPolygonsFromObjectFile();
             openButton();
         }
 
@@ -52,6 +53,14 @@ namespace CG
             pictureBox1.Image = image;
             Image img = image;
             img.Save("Tops.png");
+        }
+
+        private void btnDrawPolygons_Click(object sender, EventArgs e)
+        {
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsLW1Task7.drawPolygonsFromObjectFile(clsLoadData.polygons));
+            pictureBox1.Image = image;
+            Image img = image;
+            img.Save("Polygons.png");                                  
         }
     }
 }

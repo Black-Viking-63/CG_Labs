@@ -53,6 +53,8 @@
     <Compile Include="clsLW1Task1.cs" />
     <Compile Include="clsLW1Task3.cs" />
     <Compile Include="clsLW1Task5.cs" />
+    <Compile Include="clsLW1Task7.cs" />
+    <Compile Include="clsPolygon.cs" />
     <Compile Include="clsRGB.cs" />
     <Compile Include="fLW1SelectTask.cs">
       <SubType>Form</SubType>
