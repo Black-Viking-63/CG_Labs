@@ -27,5 +27,11 @@ namespace CG
             fLW1Task1 fLW1Task1 = new fLW1Task1();
             fLW1Task1.ShowDialog();
         }
+
+        private void btnTask4_Click(object sender, EventArgs e)
+        {
+            fLW1Task3 fLW1Task3 = new fLW1Task3();
+            fLW1Task3.ShowDialog();
+        }
     }
 }

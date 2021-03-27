@@ -88,6 +88,7 @@ namespace CG
             this.btnTask4.TabIndex = 1;
             this.btnTask4.Text = "Рисовалка линий";
             this.btnTask4.UseVisualStyleBackColor = true;
+            this.btnTask4.Click += new System.EventHandler(this.btnTask4_Click);
             // 
             // btnTask6
             // 
