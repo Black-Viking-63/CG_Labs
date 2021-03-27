@@ -91,6 +91,7 @@ namespace CG
             this.btnDrawTriangle.TabIndex = 3;
             this.btnDrawTriangle.Text = "Рисуем треугольниками";
             this.btnDrawTriangle.UseVisualStyleBackColor = true;
+            this.btnDrawTriangle.Click += new System.EventHandler(this.btnDrawTriangle_Click);
             // 
             // btnClose
             // 

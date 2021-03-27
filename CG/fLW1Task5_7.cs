@@ -44,8 +44,8 @@ namespace CG
             if (clsLoadData.flagNumberLW == 2)
             {
                 closeButton();
-                // btnDrawTriangle.Visible = true;
-                // btnDrawTriangle.Enabled = false;
+                btnDrawTriangle.Visible = true;
+                btnDrawTriangle.Enabled = false;
             }
         }
 
@@ -60,7 +60,7 @@ namespace CG
             if (clsLoadData.flagNumberLW == 2)
             {
                 openButton();
-                // btnDrawTriangle.Enabled = true;
+                btnDrawTriangle.Enabled = true;
             }
         }
 
@@ -78,6 +78,14 @@ namespace CG
             pictureBox1.Image = image;
             Image img = image;
             img.Save("Polygons.png");                                  
+        }
+
+        private void btnDrawTriangle_Click(object sender, EventArgs e)
+        {
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsTriangle.drawTriangle());
+            pictureBox1.Image = image;
+            Image img = image;
+            img.Save("Triangles.png");
         }
     }
 }
