@@ -49,6 +49,7 @@
     <Compile Include="cls2D_Picture.cs" />
     <Compile Include="cls3D_Point.cs" />
     <Compile Include="clsAlgorithmDrawLine.cs" />
+    <Compile Include="clsBarycentricCoordinates.cs" />
     <Compile Include="clsLoadData.cs" />
     <Compile Include="clsLW1Task1.cs" />
     <Compile Include="clsLW1Task3.cs" />

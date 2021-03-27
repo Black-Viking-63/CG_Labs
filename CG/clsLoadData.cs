@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CG
 {
@@ -26,6 +27,7 @@ namespace CG
         public static int polygon3;
         public static List<clsPolygon> polygons = new List<clsPolygon>();
 
+        public static int flagNumberLW = 0;
 
         public static List<cls3D_Point> loadTopsFromObjectFile()
         {
@@ -48,32 +50,73 @@ namespace CG
 
         public static List<clsPolygon> loadPolygonsFromObjectFile()
         {
-            lines = File.ReadAllLines("Test.obj");                                  // считываем информацию
-            for (int i = 0; i < lines.Length; i++)
+            if (flagNumberLW == 1)
             {
-                words = lines[i].Split(' ');
-                if (words[0] == "v")                                                // записываем вершины
+                lines = File.ReadAllLines("Test.obj");                                  // считываем информацию
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    x = double.Parse(words[1], CultureInfo.InvariantCulture);
-                    y = double.Parse(words[2], CultureInfo.InvariantCulture);
-                    z = double.Parse(words[3], CultureInfo.InvariantCulture);
-                    cls3D_Point point = new cls3D_Point(x, y, z, 5000, 600);
-                    points.Add(point);
+                    words = lines[i].Split(' ');
+                    if (words[0] == "v")                                                // записываем вершины
+                    {
+                        x = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        y = double.Parse(words[2], CultureInfo.InvariantCulture);
+                        z = double.Parse(words[3], CultureInfo.InvariantCulture);
+                        cls3D_Point point = new cls3D_Point(x, y, z, 5000, 600);
+                        points.Add(point);
+                    }
+                    if (words[0] == "f")
+                    {
+                        words = lines[i].Split(' ', '/');                               // считываем координаты полигонов          
+                        polygon1 = int.Parse(words[1]);
+                        polygon2 = int.Parse(words[4]);
+                        polygon3 = int.Parse(words[7]);
+                        clsPolygon polygon = new clsPolygon();                      //  записываем полигон
+                        polygon[0] = points[polygon1 - 1];
+                        polygon[1] = points[polygon2 - 1];
+                        polygon[2] = points[polygon3 - 1];
+                        polygons.Add(polygon);                                          // сохраняем в лист
+                    }
+
                 }
-                if (words[0] == "f")
-                {
-                    words = lines[i].Split(' ', '/');                               // считываем координаты полигонов          
-                    polygon1 = int.Parse(words[1]);
-                    polygon2 = int.Parse(words[4]);
-                    polygon3 = int.Parse(words[7]);
-                    clsPolygon polygon = new clsPolygon();                      //  записываем полигон
-                    polygon[0] = points[polygon1 - 1];
-                    polygon[1] = points[polygon2 - 1];
-                    polygon[2] = points[polygon3 - 1];
-                    polygons.Add(polygon);                                          // сохраняем в лист
-                }
+                return polygons;
             }
-            return polygons;
+            else
+            {
+                lines = File.ReadAllLines("Test.obj");                                  // считываем информацию
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    words = lines[i].Split(' ');
+                    if (words[0] == "v")                                                // записываем вершины
+                    {
+                        x = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        y = double.Parse(words[2], CultureInfo.InvariantCulture);
+                        z = double.Parse(words[3], CultureInfo.InvariantCulture);
+                        cls3D_Point point = new cls3D_Point(x, y, z, 5000, 600);
+                        points.Add(point);
+                    }
+                    if (words[0] == "f")
+                    {
+                        words = lines[i].Split(' ', '/');                               // считываем координаты полигонов          
+                        polygon1 = int.Parse(words[1]);
+                        polygon2 = int.Parse(words[4]);
+                        polygon3 = int.Parse(words[7]);
+                        clsPolygon polygon = new clsPolygon();                      //  записываем полигон
+                        polygon[0] = points[polygon1 - 1];
+                        polygon[1] = points[polygon2 - 1];
+                        polygon[2] = points[polygon3 - 1];
+                        clsBarycentricCoordinates barycentricCoordinates = new clsBarycentricCoordinates(polygon);
+                        clsBarycentricCoordinates.Calculating_lambda_coefficients(polygon[0]);
+                        if (Math.Abs(1 - clsBarycentricCoordinates.Lambda0 - clsBarycentricCoordinates.Lambda1 -
+                                     clsBarycentricCoordinates.Lambda2) > 0.001)
+                        {
+                            MessageBox.Show("Сумма барицентрических координат не равна 1!", "Ошибка",
+                                MessageBoxButtons.OK);
+                        }
+                        polygons.Add(polygon);                                          // сохраняем в лист
+                    }
+                }
+                return polygons;
+            }
         }
     }
 }

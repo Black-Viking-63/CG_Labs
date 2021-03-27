@@ -37,14 +37,31 @@ namespace CG
 
         private void fLW1Task5_7_Load(object sender, EventArgs e)
         {
-            closeButton();
+            if (clsLoadData.flagNumberLW == 1)
+            {
+                closeButton();
+            }
+            if (clsLoadData.flagNumberLW == 2)
+            {
+                closeButton();
+                // btnDrawTriangle.Visible = true;
+                // btnDrawTriangle.Enabled = false;
+            }
         }
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
             clsLoadData.loadTopsFromObjectFile();
             clsLoadData.loadPolygonsFromObjectFile();
-            openButton();
+            if (clsLoadData.flagNumberLW == 1)
+            {
+                openButton();
+            }
+            if (clsLoadData.flagNumberLW == 2)
+            {
+                openButton();
+                // btnDrawTriangle.Enabled = true;
+            }
         }
 
         private void btnDrawTops_Click(object sender, EventArgs e)

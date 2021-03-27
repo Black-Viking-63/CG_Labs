@@ -24,8 +24,16 @@ namespace CG
 
         private void btnLW1_Click(object sender, EventArgs e)
         {
+            clsLoadData.flagNumberLW = 1;
             fLW1SelectTask fLW1SelectTask = new fLW1SelectTask();
             fLW1SelectTask.ShowDialog();
+        }
+
+        private void btnLW2_Click(object sender, EventArgs e)
+        {
+            clsLoadData.flagNumberLW = 2;
+            fLW1Task5_7 fLW1Task5_7 = new fLW1Task5_7();
+            fLW1Task5_7.ShowDialog();
         }
     }
 }
