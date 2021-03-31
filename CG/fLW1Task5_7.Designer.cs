@@ -154,7 +154,7 @@ namespace CG
             this.ClientSize = new System.Drawing.Size(1635, 811);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "fLW1Task5_7";
-            this.Text = "fLW1Task5_7";
+            this.Text = "Техмерная рисовалка 2.0";
             this.Load += new System.EventHandler(this.fLW1Task5_7_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

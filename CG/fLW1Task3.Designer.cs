@@ -155,7 +155,7 @@ namespace CG
             this.ClientSize = new System.Drawing.Size(486, 445);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "fLW1Task3";
-            this.Text = "fLW1Task3";
+            this.Text = "Рисовалка линий";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
