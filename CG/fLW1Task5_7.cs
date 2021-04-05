@@ -17,6 +17,7 @@ namespace CG
             InitializeComponent();
         }
 
+        // методы открытия закрытия доступа и вилимости кнопок в зависимости от лабораторной работы
         public void openButton()
         {
             btnLoadData.Enabled = false;                  // закрытие кнопки загрузки точек и полигонов
@@ -27,8 +28,20 @@ namespace CG
         {
             btnDrawTops.Enabled = false;
             btnDrawPolygons.Enabled = false;                                     // открытие кнопок отрисовки вершин и полигонов
+        }
+
+        public void closeButton2()
+        {
             btnDrawTriangle.Enabled = false;
-            btnDrawTriangle.Visible = false;
+            btnVolHare.Enabled = false;
+            btnZbuffer.Enabled = false;
+        }
+
+        public void openButton2()
+        {
+            btnDrawTriangle.Enabled = true;
+            btnVolHare.Enabled = true;
+            btnZbuffer.Enabled = true;
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -39,16 +52,22 @@ namespace CG
         {
             if (clsLoadData.flagNumberLW == 1)
             {
+                btnDrawTriangle.Visible = false;
+                btnVolHare.Visible = false;
+                btnZbuffer.Visible = false;
                 closeButton();
             }
             if (clsLoadData.flagNumberLW == 2)
             {
                 closeButton();
+                closeButton2();
                 btnDrawTriangle.Visible = true;
-                btnDrawTriangle.Enabled = false;
+                btnVolHare.Visible = true;
+                btnZbuffer.Visible = true;
             }
         }
 
+        // загрузка данных
         private void btnLoadData_Click(object sender, EventArgs e)
         {
             clsLoadData.loadTopsFromObjectFile();
@@ -56,14 +75,16 @@ namespace CG
             if (clsLoadData.flagNumberLW == 1)
             {
                 openButton();
+                
             }
             if (clsLoadData.flagNumberLW == 2)
             {
                 openButton();
-                btnDrawTriangle.Enabled = true;
+                openButton2();
             }
         }
 
+        // отрисовка вершин
         private void btnDrawTops_Click(object sender, EventArgs e)
         {
             Bitmap image = cls2D_Picture.picture2DtoBitmap(clsLW1Task5.drawTopsFromObjectFile(clsLoadData.points));
@@ -72,6 +93,7 @@ namespace CG
             img.Save("Tops.png");
         }
 
+        // отрисовка полигонов
         private void btnDrawPolygons_Click(object sender, EventArgs e)
         {
             Bitmap image = cls2D_Picture.picture2DtoBitmap(clsLW1Task7.drawPolygonsFromObjectFile(clsLoadData.polygons));
@@ -80,12 +102,31 @@ namespace CG
             img.Save("Polygons.png");                                  
         }
 
+        // отрисовка треугольниками
         private void btnDrawTriangle_Click(object sender, EventArgs e)
         {
             Bitmap image = cls2D_Picture.picture2DtoBitmap(clsTriangle.drawTriangle());
             pictureBox1.Image = image;
             Image img = image;
             img.Save("Triangles.png");
+        }
+
+        // отрисовка объемной модели
+        private void btnVolHare_Click(object sender, EventArgs e)
+        {
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsTriangle.drawVolTriangle());
+            pictureBox1.Image = image;
+            Image img = image;
+            img.Save("VolumeHare.png");
+        }
+
+        // отрисовка объемной модели через z буфер
+        private void btnZbuffer_Click(object sender, EventArgs e)
+        {
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsTriangle.drawTriangleWithZBuffer());
+            pictureBox1.Image = image;
+            Image img = image;
+            img.Save("ZbufferHare.png");
         }
     }
 }
