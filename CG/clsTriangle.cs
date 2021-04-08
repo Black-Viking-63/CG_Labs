@@ -130,24 +130,12 @@ namespace CG
         // отрисовка треуголниками с помощью z буфера объемного изображения
         public static cls2D_Picture drawTriangleWithZBuffer()
         {
-            cls2D_Picture polygonsImage = new cls2D_Picture(3000, 3000);
-            clsZbuffer zBuffer = new clsZbuffer(3000, 3000);
+            cls2D_Picture polygonsImage = new cls2D_Picture(1700, 1500);
+            clsZbuffer zBuffer = new clsZbuffer(1700, 1500);
             Random random = new Random();
             for (int i = 0; i < clsLoadData.polygons.Count - 1; i++)
             {
                 createTriangleWithZBuffer(clsLoadData.polygons[i], polygonsImage, new clsRGB((int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygons[i]) * 255), 0, 0), zBuffer);
-            }
-            return polygonsImage;
-        }
-
-        public static cls2D_Picture drawTriangleWithPerspective()
-        {
-            cls2D_Picture polygonsImage = new cls2D_Picture(3000, 3000);
-            clsZbuffer zBuffer = new clsZbuffer(3000, 3000);
-            Random random = new Random();
-            for (int i = 0; i < clsLoadData.polygonsForPerspective.Count - 1; i++)
-            {
-                createTriangleWithZBuffer(clsLoadData.polygonsForPerspective[i], polygonsImage, new clsRGB((int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal2(clsLoadData.polygonsForPerspective2[i]) * 255), 0, 0), zBuffer);
             }
             return polygonsImage;
         }

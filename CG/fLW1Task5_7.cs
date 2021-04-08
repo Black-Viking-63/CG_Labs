@@ -71,14 +71,14 @@ namespace CG
         private void btnLoadData_Click(object sender, EventArgs e)
         {
             clsLoadData.loadTopsFromObjectFile();
+            clsLoadData.loadPolygonsFromObjectFile();
             if (clsLoadData.flagNumberLW == 1)
             {
-                clsLoadData.loadPolygonsFromObjectFileWithOutCheck();
                 openButton();
+                
             }
             if (clsLoadData.flagNumberLW == 2)
             {
-                clsLoadData.loadPolygonsFromObjectFileWithCheck();
                 openButton();
                 openButton2();
             }

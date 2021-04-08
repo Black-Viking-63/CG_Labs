@@ -35,11 +35,5 @@ namespace CG
             fLW1Task5_7 fLW1Task5_7 = new fLW1Task5_7();
             fLW1Task5_7.ShowDialog();
         }
-
-        private void btnLW3_Click(object sender, EventArgs e)
-        {
-            fLW3 fLW3 = new fLW3();
-            fLW3.ShowDialog();
-        }
     }
 }
