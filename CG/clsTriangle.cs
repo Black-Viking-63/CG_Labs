@@ -105,9 +105,9 @@ namespace CG
         {
             cls2D_Picture polygonsImage = new cls2D_Picture(1700, 1500);
             Random random = new Random();
-            for (int i = 0; i < clsLoadData.polygons.Count - 1; i++)
+            for (int i = 0; i < clsLoadData.polygonsForLineTrans.Count - 1; i++)
             {
-                createTriangle(clsLoadData.polygons[i], polygonsImage, new clsRGB(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)));
+                createTriangle(clsLoadData.polygonsForLineTrans[i], polygonsImage, new clsRGB(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)));
             }
             return polygonsImage;
         }
@@ -117,11 +117,11 @@ namespace CG
         {
             cls2D_Picture polygonsImage = new cls2D_Picture(1700, 1500);
             Random random = new Random();
-            for (int i = 0; i < clsLoadData.polygons.Count - 1; i++)
+            for (int i = 0; i < clsLoadData.polygonsForLineTrans.Count - 1; i++)
             {
-                if (clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygons[i]) < 0)
-                    createTriangle(clsLoadData.polygons[i], polygonsImage, 
-                        new clsRGB((int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygons[i]) * 255), 0,0));
+                if (clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygonsForLineTrans[i]) < 0)
+                    createTriangle(clsLoadData.polygonsForLineTrans[i], polygonsImage, 
+                        new clsRGB((int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygonsForLineTrans[i]) * 255), 0,0));
                 else continue;
             }
             return polygonsImage;
@@ -133,9 +133,11 @@ namespace CG
             cls2D_Picture polygonsImage = new cls2D_Picture(1700, 1500);
             clsZbuffer zBuffer = new clsZbuffer(1700, 1500);
             Random random = new Random();
-            for (int i = 0; i < clsLoadData.polygons.Count - 1; i++)
+            for (int i = 0; i < clsLoadData.polygonsForLineTrans.Count - 1; i++)
             {
-                createTriangleWithZBuffer(clsLoadData.polygons[i], polygonsImage, new clsRGB((int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygons[i]) * 255), 0, 0), zBuffer);
+                createTriangleWithZBuffer(clsLoadData.polygonsForLineTrans[i], polygonsImage, 
+                    new clsRGB((int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygonsForLineTrans[i]) * 128),
+                    (int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygonsForLineTrans[i]) * 128), 0), zBuffer);
             }
             return polygonsImage;
         }

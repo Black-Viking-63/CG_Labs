@@ -70,15 +70,16 @@ namespace CG
         // загрузка данных
         private void btnLoadData_Click(object sender, EventArgs e)
         {
-            clsLoadData.loadTopsFromObjectFile();
-            clsLoadData.loadPolygonsFromObjectFile();
+            clsLoadData.loadTopsFromObjectFileForLineTrans();
+            
             if (clsLoadData.flagNumberLW == 1)
             {
-                openButton();
-                
+                clsLoadData.loadPolygonsFromObjectFileWithOutCheck();
+                openButton();                
             }
             if (clsLoadData.flagNumberLW == 2)
             {
+                clsLoadData.loadPolygonsFromObjectFileWithCheck();
                 openButton();
                 openButton2();
             }
@@ -87,7 +88,7 @@ namespace CG
         // отрисовка вершин
         private void btnDrawTops_Click(object sender, EventArgs e)
         {
-            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsLW1Task5.drawTopsFromObjectFile(clsLoadData.points));
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsLW1Task5.drawTopsFromObjectFile(clsLoadData.pointsForLineTrans));
             pictureBox1.Image = image;
             Image img = image;
             img.Save("Tops.png");
@@ -96,7 +97,7 @@ namespace CG
         // отрисовка полигонов
         private void btnDrawPolygons_Click(object sender, EventArgs e)
         {
-            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsLW1Task7.drawPolygonsFromObjectFile(clsLoadData.polygons));
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsLW1Task7.drawPolygonsFromObjectFile(clsLoadData.polygonsForLineTrans));
             pictureBox1.Image = image;
             Image img = image;
             img.Save("Polygons.png");                                  
