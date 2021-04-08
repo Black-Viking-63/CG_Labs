@@ -102,6 +102,7 @@ namespace CG
             this.btnLW3.TabIndex = 2;
             this.btnLW3.Text = "Лабораторная работа 3";
             this.btnLW3.UseVisualStyleBackColor = true;
+            this.btnLW3.Click += new System.EventHandler(this.btnLW3_Click);
             // 
             // btnClose
             // 
