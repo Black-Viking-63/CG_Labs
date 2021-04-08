@@ -8,7 +8,6 @@ namespace CG
 {
     public class clsAlgorithmDrawLine
     {
-        // простейший алгоритм отрисовки линии
         public static void line1(int x0, int y0, int x1, int y1, cls2D_Picture image, clsRGB color)
         {
             for (float t = 0.0F; t < 1.0F; t += 0.01F)
@@ -36,7 +35,6 @@ namespace CG
             x = y;
             y = temp;
         }
-        
         // улучшенный первый алгоритм
         public static void line3(int x0, int y0, int x1, int y1, cls2D_Picture image, clsRGB color)
         {
@@ -66,7 +64,6 @@ namespace CG
                 }
             }
         }
-        
         // алгоритм Брезенхема
         public static void line4(int x0, int y0, int x1, int y1, cls2D_Picture image, clsRGB color)
         {

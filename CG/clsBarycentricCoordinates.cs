@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace CG
 {
-    public class clsBarycentricCoordinates                                  // класс описывающий барицентрические координаты
+    public class clsBarycentricCoordinates
     {
-        // поля
         public static clsPolygon polygon;
         public static double lambda0;
         public static double lambda1;
         public static double lambda2;
 
-        // методы доступа
         public static double Lambda0
         {
             get
@@ -52,8 +50,6 @@ namespace CG
         {
             polygon = polyg;
         }
-       
-        // подсчет барицентрических координат
         public static void Calculating_lambda_coefficients(cls3D_Point screenPoint)
         {
             double x0 = polygon[0].X;

@@ -16,13 +16,12 @@ namespace CG
         public static string[] words;
         public static string[] numbers;
 
-        // вершины полигонов
+        // координаты
         public static double x;
         public static double y;
         public static double z;
         public static List<cls3D_Point> points = new List<cls3D_Point>();
 
-        // сами полигоны
         public static int polygon1;
         public static int polygon2;
         public static int polygon3;
@@ -30,7 +29,6 @@ namespace CG
 
         public static int flagNumberLW = 0;
 
-        // считываем и записываем вершины
         public static List<cls3D_Point> loadTopsFromObjectFile()
         {
             lines = File.ReadAllLines("Test.obj");                                  // считывание информации из файла
@@ -49,15 +47,23 @@ namespace CG
             }
             return points; // возвращаем массив точек
         }
-        // считываем и записываем полигоны
+
         public static List<clsPolygon> loadPolygonsFromObjectFile()
         {
             if (flagNumberLW == 1)
             {
-                points = loadTopsFromObjectFile();                            // считываем информацию
+                lines = File.ReadAllLines("Test.obj");                                  // считываем информацию
                 for (int i = 0; i < lines.Length; i++)
                 {
                     words = lines[i].Split(' ');
+                    if (words[0] == "v")                                                // записываем вершины
+                    {
+                        x = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        y = double.Parse(words[2], CultureInfo.InvariantCulture);
+                        z = double.Parse(words[3], CultureInfo.InvariantCulture);
+                        cls3D_Point point = new cls3D_Point(x, y, z, 5000, 600);
+                        points.Add(point);
+                    }
                     if (words[0] == "f")
                     {
                         words = lines[i].Split(' ', '/');                               // считываем координаты полигонов          
@@ -76,10 +82,18 @@ namespace CG
             }
             else
             {
-                points = loadTopsFromObjectFile();                     // считываем информацию
+                lines = File.ReadAllLines("Test.obj");                                  // считываем информацию
                 for (int i = 0; i < lines.Length; i++)
                 {
                     words = lines[i].Split(' ');
+                    if (words[0] == "v")                                                // записываем вершины
+                    {
+                        x = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        y = double.Parse(words[2], CultureInfo.InvariantCulture);
+                        z = double.Parse(words[3], CultureInfo.InvariantCulture);
+                        cls3D_Point point = new cls3D_Point(x, y, z, 5000, 600);
+                        points.Add(point);
+                    }
                     if (words[0] == "f")
                     {
                         words = lines[i].Split(' ', '/');                               // считываем координаты полигонов          
