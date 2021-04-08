@@ -66,6 +66,7 @@ namespace CG
             this.z = objectConvertToPoint(z);
         }
 
+        // конструктор
         public cls3D_Point(int x, int y)
         {
             this.x = x;

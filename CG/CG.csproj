@@ -58,6 +58,9 @@
     <Compile Include="clsPolygon.cs" />
     <Compile Include="clsRGB.cs" />
     <Compile Include="clsTriangle.cs" />
+    <Compile Include="clsVector.cs" />
+    <Compile Include="clsVectorsOperations.cs" />
+    <Compile Include="clsZbuffer.cs" />
     <Compile Include="fLW1SelectTask.cs">
       <SubType>Form</SubType>
     </Compile>
