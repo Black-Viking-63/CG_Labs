@@ -35,5 +35,10 @@ namespace CG
             fLW1Task5_7 fLW1Task5_7 = new fLW1Task5_7();
             fLW1Task5_7.ShowDialog();
         }
+
+        private void fMain_Load(object sender, EventArgs e)
+        {
+           // clsLoadData.loadTopsFromObjectFileForLight();
+        }
     }
 }
