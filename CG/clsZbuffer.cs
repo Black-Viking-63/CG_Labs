@@ -27,11 +27,11 @@ namespace CG
         // методы доступа
         public void setZBuffer(int x, int y, double z)
         {
-            zBuffer[x * height + y] = (int)z;
+            zBuffer[x + width * y] = (int)z;
         }
         public double getZBuffer(int x, int y)
         {
-            return zBuffer[x * height + y];
+            return zBuffer[x + width * y];
         }
     }
 }

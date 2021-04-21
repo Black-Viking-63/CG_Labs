@@ -125,7 +125,6 @@ namespace CG
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "fMain";
             this.Text = "Главное меню";
-            this.Load += new System.EventHandler(this.fMain_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

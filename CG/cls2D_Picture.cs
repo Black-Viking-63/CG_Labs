@@ -23,7 +23,7 @@ namespace CG
             this.height = height;
             for (int i = 0; i < width * height; i++)
             {
-                colorsList.Add(new clsRGB(255, 255, 255));
+                colorsList.Add(new clsRGB(0, 0, 0));
             }
         }
 
@@ -51,7 +51,6 @@ namespace CG
             }
         }
 
-        
         // метод доступа к пикселям
         // постановка по координантам цветового пикселя
         public void setPixel(int x, int y, clsRGB rgbColour)

@@ -10,12 +10,12 @@ namespace CG
     {
         // поля
         public static clsPolygon polygon;
-        public double lambda0;
-        public double lambda1;
-        public double lambda2;
+        public static double lambda0;
+        public static double lambda1;
+        public static double lambda2;
 
         // методы доступа
-        public double Lambda0
+        public static double Lambda0
         {
             get
             {
@@ -26,7 +26,7 @@ namespace CG
                 lambda0 = value;
             }
         }
-        public double Lambda1
+        public static double Lambda1
         {
             get
             {
@@ -37,7 +37,7 @@ namespace CG
                 lambda1 = value;
             }
         }
-        public double Lambda2
+        public static double Lambda2
         {
             get
             {
@@ -54,7 +54,7 @@ namespace CG
         }
        
         // подсчет барицентрических координат
-        public void Calculating_lambda_coefficients(cls3D_Point screenPoint)
+        public static void Calculating_lambda_coefficients(cls3D_Point screenPoint)
         {
             double x0 = polygon[0].X;
             double x1 = polygon[1].X;
@@ -71,21 +71,6 @@ namespace CG
             lambda2 = ((x0 - x1) * (y - y1) - (y0 - y1) * (x - x1)) /
                       ((x0 - x1) * (y2 - y1) - (y0 - y1) * (x2 - x1));
         }
-        
-        public void Calculating_lambda_coefficientsForTurn(cls3D_Point screenPoint, clsPolygon polygonForDraw)
-        {
-            double x0 = polygonForDraw[0].X0;
-            double x1 = polygonForDraw[1].X0;
-            double x2 = polygonForDraw[2].X0;
-            double y0 = polygonForDraw[0].Y0;
-            double y1 = polygonForDraw[1].Y0;
-            double y2 = polygonForDraw[2].Y0;
-            double y = screenPoint.Y;
-            double x = screenPoint.X;
-            lambda0 = ((x1 - x2) * (y - y2) - (y1 - y2) * (x - x2)) / ((x1 - x2) * (y0 - y2) - (y1 - y2) * (x0 - x2));
-            lambda1 = ((x2 - x0) * (y - y0) - (y2 - y0) * (x - x0)) / ((x2 - x0) * (y1 - y0) - (y2 - y0) * (x1 - x0));
-            lambda2 = ((x0 - x1) * (y - y1) - (y0 - y1) * (x - x1)) / ((x0 - x1) * (y2 - y1) - (y0 - y1) * (x2 - x1));
-        }
-
+    
     }
 }

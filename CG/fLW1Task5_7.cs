@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,21 +120,14 @@ namespace CG
             Image img = image;
             img.Save("VolumeHare.png");
         }
-       
-
 
         // отрисовка объемной модели через z буфер
         private void btnZbuffer_Click(object sender, EventArgs e)
         {
-            clsLoadData.pointsForDraw = clsLoadData.loadTopsFromObjectFileForDraw();
-            clsLoadData.pointsForLight = clsLoadData.loadTopsFromObjectFileForLight();
-            clsLoadData.polygonsForDraw = clsLoadData.loadPolygonsFromObjectFileForDraw();
-            clsLoadData.polygonsForLight = clsLoadData.loadPolygonsFromObjectFileForLight();
-            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsTriangle.drawTriangleWithZBufferForTurn());
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsTriangle.drawTriangleWithZBuffer());
             pictureBox1.Image = image;
             Image img = image;
             img.Save("ZbufferHare.png");
-            
         }
     }
 }
