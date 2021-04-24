@@ -42,6 +42,7 @@ namespace CG
         {
             clsLoadData.polygonsForLineTrans = clsLoadData.loadPolygonsFromObjectFileWithCheck();
             clsLoadData.polygonsForTransformation = clsLoadData.loadPolygonsFromObjectFileWithCheckForTransformation();
+            clsLoadData.normPolygons = clsLoadData.loadNormsPolygonsFromObjectFile();
             btnZbuffer.Enabled = true;
             btnTurn.Enabled = true;
             btnLight.Enabled = true;
@@ -53,6 +54,14 @@ namespace CG
             btnZbuffer.Enabled = false;
             btnTurn.Enabled = false;
             btnLight.Enabled = false;
+        }
+
+        private void btnLight_Click(object sender, EventArgs e)
+        {
+            Bitmap image = cls2D_Picture.picture2DtoBitmap(clsTriangle.drawTriangleWithZBufferForTransformationWithModifiedLight());
+            pictureBox1.Image = image;
+            Image img = image;
+            img.Save("HareWithModifiedLight.png");
         }
     }
 }

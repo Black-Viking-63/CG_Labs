@@ -105,6 +105,7 @@ namespace CG
             this.btnLight.TabIndex = 3;
             this.btnLight.Text = "Улучшенное освещение";
             this.btnLight.UseVisualStyleBackColor = true;
+            this.btnLight.Click += new System.EventHandler(this.btnLight_Click);
             // 
             // btnTurn
             // 

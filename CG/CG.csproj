@@ -56,6 +56,8 @@
     <Compile Include="clsLW1Task5.cs" />
     <Compile Include="clsLW1Task7.cs" />
     <Compile Include="cls3D_pointModified.cs" />
+    <Compile Include="clsNorm.cs" />
+    <Compile Include="clsNormsPolygon.cs" />
     <Compile Include="clsPolygon.cs" />
     <Compile Include="clsPolygonModified.cs" />
     <Compile Include="clsRGB.cs" />

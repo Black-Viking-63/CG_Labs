@@ -141,19 +141,6 @@ namespace CG
             return polygonsImage;
         }
 
-        public static cls2D_Picture drawTriangleWithZBufferForTransformation()
-        {
-            cls2D_Picture polygonsImage = new cls2D_Picture(5000, 5000);
-            clsZbuffer zBuffer = new clsZbuffer(5000, 5000);
-            for (int i = 0; i < clsLoadData.polygonsForTransformation.Count; i++)
-            {
-                if (clsVectorsOperations.getCosNormal(clsLoadData.polygonsForTransformation[i]) < 0)
-                    createTriangleWithZBufferForTransformation(clsLoadData.polygonsForTransformation[i], polygonsImage, zBuffer, i);
-                else continue;
-            }
-            return polygonsImage;
-        }
-
         public static int funcMinimumX(clsPolygonModified poligon)
         {
             minimalX = (int)Math.Min(Math.Min(poligon[0].projectiveX, poligon[1].projectiveX), poligon[2].projectiveX);
@@ -214,6 +201,61 @@ namespace CG
                     }
                 }
             }
+        }
+
+        public static cls2D_Picture drawTriangleWithZBufferForTransformation()
+        {
+            cls2D_Picture polygonsImage = new cls2D_Picture(5000, 5000);
+            clsZbuffer zBuffer = new clsZbuffer(5000, 5000);
+            for (int i = 0; i < clsLoadData.polygonsForTransformation.Count; i++)
+            {
+                if (clsVectorsOperations.getCosNormal(clsLoadData.polygonsForTransformation[i]) < 0)
+                    createTriangleWithZBufferForTransformation(clsLoadData.polygonsForTransformation[i], polygonsImage, zBuffer, i);
+                else continue;
+            }
+            return polygonsImage;
+        }
+
+        public static void createTriangleWithZBufferForTransformationWithModifiedLight(clsPolygonModified polygon, clsNormsPolygon normsPolygon, cls2D_Picture image, clsZbuffer zBuffer, int i)
+        {
+            minimalX = funcMinimumX(polygon);
+            maximalX = funcMaximumX(polygon, image);
+            minimalY = funcMinimumY(polygon);
+            maximalY = funcMaximumY(polygon, image);
+            clsBarycentricCoordinates barycentricPoint = new clsBarycentricCoordinates(polygon);
+            double l0 = clsVectorsOperations.scalarMulty(normsPolygon[0]) / (clsVectorsOperations.lengthNorm(normsPolygon[0]) * clsVectorsOperations.lengthVectorLight());
+            double l1 = clsVectorsOperations.scalarMulty(normsPolygon[1]) / (clsVectorsOperations.lengthNorm(normsPolygon[1]) * clsVectorsOperations.lengthVectorLight());
+            double l2 = clsVectorsOperations.scalarMulty(normsPolygon[2]) / (clsVectorsOperations.lengthNorm(normsPolygon[2]) * clsVectorsOperations.lengthVectorLight());
+            for (int x = minimalX; x <= maximalX; x++)
+            {
+                for (int y = minimalY; y <= maximalY; y++)
+                {
+                    barycentricPoint.calc_lambda_for_Transformation(x, y);
+                    if (barycentricPoint.lambda0 > 0 && barycentricPoint.lambda1 > 0 && barycentricPoint.lambda2 > 0)
+                    {
+                        double z = barycentricPoint.lambda0 * polygon[0].movementZ + barycentricPoint.lambda1 * polygon[1].movementZ + barycentricPoint.lambda2 * polygon[2].movementZ;
+                        if (z < zBuffer.getZBuffer(x, y))
+                        {
+                            int brightness = (int)Math.Abs((255 * (barycentricPoint.lambda0 * l0 + barycentricPoint.lambda1 * l1 + barycentricPoint.lambda2 * l2)));
+                            image.setPixel(x, y, new clsRGB(brightness, 0, 0));
+                            zBuffer.setZBuffer(x, y, z);
+                        }
+                    }
+                }
+            }
+        }
+
+        public static cls2D_Picture drawTriangleWithZBufferForTransformationWithModifiedLight()
+        {
+            cls2D_Picture polygonsImage = new cls2D_Picture(5000, 5000);
+            clsZbuffer zBuffer = new clsZbuffer(5000, 5000);
+            for (int i = 0; i < clsLoadData.polygonsForTransformation.Count; i++)
+            {
+                if (clsVectorsOperations.getCosNormal(clsLoadData.polygonsForTransformation[i]) < 0)
+                    createTriangleWithZBufferForTransformationWithModifiedLight(clsLoadData.polygonsForTransformation[i], clsLoadData.normPolygons[i], polygonsImage, zBuffer, i);
+                else continue;
+            }
+            return polygonsImage;
         }
     }
 }

@@ -22,13 +22,14 @@ namespace CG
         public static double z;
         public static List<cls3D_Point> pointsForLineTrans = new List<cls3D_Point>();
         public static List<cls3D_pointModified> pointsForTransformation = new List<cls3D_pointModified>();
-
+        public static List<clsNorm> normsCoordinates = new List<clsNorm>();
         // сами полигоны
         public static int polygon1;
         public static int polygon2;
         public static int polygon3;
         public static List<clsPolygon> polygonsForLineTrans = new List<clsPolygon>();
         public static List<clsPolygonModified> polygonsForTransformation = new List<clsPolygonModified>();
+        public static List<clsNormsPolygon> normPolygons = new List<clsNormsPolygon>();
 
         public static int flagNumberLW;
         // считываем и записываем вершины
@@ -152,6 +153,48 @@ namespace CG
                 }
             }
             return polygonsForTransformation;
+
+        }
+
+        public static List<clsNorm> loadCoordinatesNormsFromObjectFile()
+        {
+            lines = File.ReadAllLines("Test.obj");                                  // считывание информации из файла
+            for (int i = 0; i < lines.Length; i++)
+            {
+                words = lines[i].Split(' ');
+                if (words[0] == "vn")                                                // ищем вершины
+                {
+                    // CultureInfo.InvariantCulture позволяет читать десятичные числа как 0.хххх, а не 0,ххх
+                    x = double.Parse(words[1], CultureInfo.InvariantCulture);       // считываем врешины
+                    y = double.Parse(words[2], CultureInfo.InvariantCulture);
+                    z = double.Parse(words[3], CultureInfo.InvariantCulture);
+                    clsNorm norm = new clsNorm(x, y, z);       // инициализируем точку по координатам
+                    normsCoordinates.Add(norm);                                             // записываем в лист точку
+                }
+            }
+            return normsCoordinates; // возвращаем массив точек
+        }
+
+        public static List<clsNormsPolygon> loadNormsPolygonsFromObjectFile()
+        {
+            normsCoordinates = loadCoordinatesNormsFromObjectFile();                     // считываем информацию
+            for (int i = 0; i < lines.Length; i++)
+            {
+                words = lines[i].Split(' ');
+                if (words[0] == "f")
+                {
+                    words = lines[i].Split(' ', '/');                               // считываем координаты полигонов          
+                    polygon1 = int.Parse(words[3]);
+                    polygon2 = int.Parse(words[6]);
+                    polygon3 = int.Parse(words[9]);
+                    clsNormsPolygon normsPolygon = new clsNormsPolygon();                      //  записываем полигон
+                    normsPolygon[0] = normsCoordinates[polygon1 - 1];
+                    normsPolygon[1] = normsCoordinates[polygon2 - 1];
+                    normsPolygon[2] = normsCoordinates[polygon3 - 1];
+                    normPolygons.Add(normsPolygon);                                          // сохраняем в лист
+                }
+            }
+            return normPolygons;
 
         }
     }

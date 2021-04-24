@@ -101,5 +101,23 @@ namespace CG
             }
             return matrixC;
         }
+
+        public static double scalarMulty(clsNorm norm)
+        {
+            double result = norm.X * vectorLight.X + norm.Y * vectorLight.Y + norm.Z * vectorLight.Z;
+            return result;
+        }
+
+        public static double lengthNorm(clsNorm norm)
+        {
+            double lenght = Math.Sqrt(norm.X * norm.X + norm.Y * norm.Y + norm.Z * norm.Z);
+            return lenght;
+        }
+
+        public static double lengthVectorLight()
+        {
+            double lenght = Math.Sqrt(vectorLight.X * vectorLight.X + vectorLight.Y * vectorLight.Y + vectorLight.Z * vectorLight.Z);
+            return lenght;
+        }
     }
 }
