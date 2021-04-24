@@ -55,7 +55,9 @@
     <Compile Include="clsLW1Task3.cs" />
     <Compile Include="clsLW1Task5.cs" />
     <Compile Include="clsLW1Task7.cs" />
+    <Compile Include="cls3D_pointModified.cs" />
     <Compile Include="clsPolygon.cs" />
+    <Compile Include="clsPolygonModified.cs" />
     <Compile Include="clsRGB.cs" />
     <Compile Include="clsTriangle.cs" />
     <Compile Include="clsVector.cs" />
@@ -85,6 +87,12 @@
     <Compile Include="fLW1Task5_7.Designer.cs">
       <DependentUpon>fLW1Task5_7.cs</DependentUpon>
     </Compile>
+    <Compile Include="fLW3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fLW3.Designer.cs">
+      <DependentUpon>fLW3.cs</DependentUpon>
+    </Compile>
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fLW1Task5_7.resx">
       <DependentUpon>fLW1Task5_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fLW3.resx">
+      <DependentUpon>fLW3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>

@@ -65,8 +65,8 @@ namespace CG
             {
                 for (int y = minimalY; y < maximalY; y++)
                 {
-                    clsBarycentricCoordinates.Calculating_lambda_coefficients(new cls3D_Point(x, y));
-                    if (clsBarycentricCoordinates.Lambda0 >= 0 && clsBarycentricCoordinates.Lambda1 >= 0 && clsBarycentricCoordinates.Lambda2 >= 0)
+                    barycentricPoint.Calculating_lambda_coefficients(new cls3D_Point(x, y));
+                    if (barycentricPoint.Lambda0 >= 0 && barycentricPoint.Lambda1 >= 0 && barycentricPoint.Lambda2 >= 0)
                     {
                         image.setPixel(x, y, colour);
                     }
@@ -86,10 +86,10 @@ namespace CG
             {
                 for (int y = minimalY; y < maximalY; y++)
                 {
-                    clsBarycentricCoordinates.Calculating_lambda_coefficients(new cls3D_Point(x, y));
-                    if (clsBarycentricCoordinates.Lambda0 >= 0 && clsBarycentricCoordinates.Lambda1 >= 0 && clsBarycentricCoordinates.Lambda2 >= 0)
+                    barycentricPoint.Calculating_lambda_coefficients(new cls3D_Point(x, y));
+                    if (barycentricPoint.Lambda0 >= 0 && barycentricPoint.Lambda1 >= 0 && barycentricPoint.Lambda2 >= 0)
                     {
-                        double z = clsBarycentricCoordinates.Lambda0 * polygon[0].Z + clsBarycentricCoordinates.Lambda1 * polygon[1].Z + clsBarycentricCoordinates.Lambda2 * polygon[2].Z;
+                        double z = barycentricPoint.Lambda0 * polygon[0].Z + barycentricPoint.Lambda1 * polygon[1].Z + barycentricPoint.Lambda2 * polygon[2].Z;
                         if (z < zBuffer.getZBuffer(x, y))
                         {
                             zBuffer.setZBuffer(x, y, z);
@@ -132,14 +132,88 @@ namespace CG
         {
             cls2D_Picture polygonsImage = new cls2D_Picture(1700, 1500);
             clsZbuffer zBuffer = new clsZbuffer(1700, 1500);
-            Random random = new Random();
             for (int i = 0; i < clsLoadData.polygonsForLineTrans.Count - 1; i++)
             {
-                createTriangleWithZBuffer(clsLoadData.polygonsForLineTrans[i], polygonsImage, 
+                createTriangleWithZBuffer(clsLoadData.polygonsForLineTrans[i], polygonsImage,
                     new clsRGB((int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygonsForLineTrans[i]) * 128),
                     (int)Math.Abs(clsVectorsOperations.cosDirectionEarthNormal(clsLoadData.polygonsForLineTrans[i]) * 128), 0), zBuffer);
             }
             return polygonsImage;
+        }
+
+        public static cls2D_Picture drawTriangleWithZBufferForTransformation()
+        {
+            cls2D_Picture polygonsImage = new cls2D_Picture(5000, 5000);
+            clsZbuffer zBuffer = new clsZbuffer(5000, 5000);
+            for (int i = 0; i < clsLoadData.polygonsForTransformation.Count; i++)
+            {
+                if (clsVectorsOperations.getCosNormal(clsLoadData.polygonsForTransformation[i]) < 0)
+                    createTriangleWithZBufferForTransformation(clsLoadData.polygonsForTransformation[i], polygonsImage, zBuffer, i);
+                else continue;
+            }
+            return polygonsImage;
+        }
+
+        public static int funcMinimumX(clsPolygonModified poligon)
+        {
+            minimalX = (int)Math.Min(Math.Min(poligon[0].projectiveX, poligon[1].projectiveX), poligon[2].projectiveX);
+            if (minimalX < 0)
+            {
+                minimalX = 0;
+            }
+            return minimalX;
+        }
+        public static int funcMinimumY(clsPolygonModified poligon)
+        {
+            minimalY = (int)Math.Min(Math.Min(poligon[0].projectiveY, poligon[1].projectiveY), poligon[2].projectiveY);
+            if (minimalY < 0)
+            {
+                minimalY = 0;
+            }
+            return minimalY;
+        }
+        public static int funcMaximumX(clsPolygonModified poligon, cls2D_Picture Picture)
+        {
+            maximalX = (int)Math.Max(Math.Max(poligon[0].projectiveX, poligon[1].projectiveX), poligon[2].projectiveX);
+            if (maximalX > Picture.width)
+            {
+                maximalX = Picture.width;
+            }
+            return maximalX;
+        }
+        public static int funcMaximumY(clsPolygonModified poligon, cls2D_Picture Picture)
+        {
+            maximalY = (int)Math.Max(Math.Max(poligon[0].projectiveY, poligon[1].projectiveY), poligon[2].projectiveY);
+            if (maximalY > Picture.height)
+            {
+                maximalY = Picture.height;
+            }
+            return maximalY;
+        }
+
+        public static void createTriangleWithZBufferForTransformation(clsPolygonModified polygon, cls2D_Picture image, clsZbuffer zBuffer, int i)
+        {
+            minimalX = funcMinimumX(polygon);
+            maximalX = funcMaximumX(polygon, image);
+            minimalY = funcMinimumY(polygon);
+            maximalY = funcMaximumY(polygon, image);
+            clsBarycentricCoordinates barycentricPoint = new clsBarycentricCoordinates(polygon);
+            for (int x = minimalX; x <= maximalX; x++)
+            {
+                for (int y = minimalY; y <= maximalY; y++)
+                {
+                    barycentricPoint.calc_lambda_for_Transformation(x, y);
+                    if (barycentricPoint.lambda0 > 0 && barycentricPoint.lambda1 > 0 && barycentricPoint.lambda2 > 0)
+                    {
+                        double z = barycentricPoint.lambda0 * polygon[0].movementZ + barycentricPoint.lambda1 * polygon[1].movementZ + barycentricPoint.lambda2 * polygon[2].movementZ;
+                        if (z < zBuffer.getZBuffer(x, y))
+                        {
+                            zBuffer.setZBuffer(x, y, z);
+                            image.setPixel(x, y, new clsRGB((int)Math.Abs(clsVectorsOperations.getCosNormal(clsLoadData.polygonsForTransformation[i]) * 255), 0, 0));
+                        }
+                    }
+                }
+            }
         }
     }
 }
