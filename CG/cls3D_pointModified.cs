@@ -75,7 +75,7 @@ namespace CG
         public double[,] calculateRotationCoordinates(double x, double y, double z)
         {
             double[,] originalCoordinates =  { { x }, { y }, { z } };
-            double[,] matrixR = calculateMatrixR(180, -40, 0);
+            double[,] matrixR = calculateMatrixR(180, -45, 0);
             double[,] rotationCoordinates = clsVectorsOperations.multiplyMatrix(matrixR, originalCoordinates);
             return rotationCoordinates;
         }

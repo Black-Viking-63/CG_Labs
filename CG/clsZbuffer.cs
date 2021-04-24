@@ -11,27 +11,33 @@ namespace CG
 
         public int height;
         public int width;
-        public List<double> zBuffer = new List<double>();
+        //public static List<double> zBuffer = new List<double>();
+        public static double[,] zBuffer;
 
         // конструктор
         public clsZbuffer(int width, int height)
         {
             this.width = width;
             this.height = height;
-            for (int i = 0; i < width * height; i++)
+            zBuffer = new double[width, height];
+            for (int i = 0; i < width - 1; i++)
             {
-                zBuffer.Add(Double.PositiveInfinity);
+                for (int j = 0; j < height - 1; j++)
+                {
+                    zBuffer[i, j] = 10000;
+                }
             }
+            
         }
 
         // методы доступа
         public void setZBuffer(int x, int y, double z)
         {
-            zBuffer[x + width * y] = (int)z;
+            zBuffer[x, y] = z;
         }
         public double getZBuffer(int x, int y)
         {
-            return zBuffer[x + width * y];
+            return zBuffer[x, y];
         }
     }
 }

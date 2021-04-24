@@ -192,7 +192,7 @@ namespace CG
                     barycentricPoint.calc_lambda_for_Transformation(x, y);
                     if (barycentricPoint.lambda0 > 0 && barycentricPoint.lambda1 > 0 && barycentricPoint.lambda2 > 0)
                     {
-                        double z = barycentricPoint.lambda0 * polygon[0].movementZ + barycentricPoint.lambda1 * polygon[1].movementZ + barycentricPoint.lambda2 * polygon[2].movementZ;
+                        double z = barycentricPoint.lambda0 * polygon[0].originalZ + barycentricPoint.lambda1 * polygon[1].originalZ + barycentricPoint.lambda2 * polygon[2].originalZ;
                         if (z < zBuffer.getZBuffer(x, y))
                         {
                             zBuffer.setZBuffer(x, y, z);
@@ -233,7 +233,7 @@ namespace CG
                     barycentricPoint.calc_lambda_for_Transformation(x, y);
                     if (barycentricPoint.lambda0 > 0 && barycentricPoint.lambda1 > 0 && barycentricPoint.lambda2 > 0)
                     {
-                        double z = barycentricPoint.lambda0 * polygon[0].movementZ + barycentricPoint.lambda1 * polygon[1].movementZ + barycentricPoint.lambda2 * polygon[2].movementZ;
+                        double z = barycentricPoint.lambda0 * polygon[0].originalZ + barycentricPoint.lambda1 * polygon[1].originalZ + barycentricPoint.lambda2 * polygon[2].originalZ;
                         if (z < zBuffer.getZBuffer(x, y))
                         {
                             int brightness = (int)Math.Abs((255 * (barycentricPoint.lambda0 * l0 + barycentricPoint.lambda1 * l1 + barycentricPoint.lambda2 * l2)));

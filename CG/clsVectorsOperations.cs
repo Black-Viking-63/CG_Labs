@@ -44,13 +44,13 @@ namespace CG
         {
             double x0 = polygon[0].movementX;
             double y0 = polygon[0].movementY;
-            double z0 = polygon[0].originalZ;
+            double z0 = polygon[0].movementZ;
             double x1 = polygon[1].movementX;
             double y1 = polygon[1].movementY;
-            double z1 = polygon[1].originalZ;
+            double z1 = polygon[1].movementZ;
             double x2 = polygon[2].movementX;
             double y2 = polygon[2].movementY;
-            double z2 = polygon[2].originalZ;
+            double z2 = polygon[2].movementZ;
             // нахождение координат нормали через определитель
             double x = (y1 - y0) * (z1 - z2) - (z1 - z0) * (y1 - y2);
             double y = (x1 - x2) * (z1 - z0) - (z1 - z2) * (x1 - x0);
